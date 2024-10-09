@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break-Even ROAS Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+
+        input[type="number"] {
+        width: 95.5%; /* Dit zorgt ervoor dat de input-velden net zo breed zijn als de container */
+        padding: 10px;
+        margin: auto 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+        .calculate-btn {
+            background-color: #66a6ff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator-container">
+    <h2>Break-Even ROAS Calculator</h2>
+    
+    <label for="revenue">Totale Omzet per Product (€):</label>
+    <input type="number" id="revenue" placeholder="Bijv. 45">
+
+    <label for="costs">Totale Kosten per Product (€):</label>
+    <input type="number" id="costs" placeholder="Bijv. 15">
+
+    <button class="calculate-btn" onclick="calculateBER()">Bereken Break-Even ROAS</button>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function calculateBER() {
+        // Haal de input-waarden op
+        const revenue = parseFloat(document.getElementById('revenue').value);
+        const costs = parseFloat(document.getElementById('costs').value);
+        
+        // Check of de invoer correct is
+        if (isNaN(revenue) || isNaN(costs) || revenue <= costs) {
+            document.getElementById('result').innerHTML = "Voer correcte waarden in. Omzet moet groter zijn dan kosten.";
+            return;
+        }
+        
+        // Bereken Break-Even ROAS
+        const breakevenROAS = revenue / (revenue - costs);
+        
+        // Toon het resultaat
+        document.getElementById('result').innerHTML = `Je Break-Even ROAS is: <strong>${breakevenROAS.toFixed(2)}</strong>`;
+    }
+</script>
+
+</body>
+</html>
